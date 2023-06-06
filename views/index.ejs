@@ -29,25 +29,12 @@
 
       <div class="mt-4">
         <h3>Shortened URL:</h3>
-        <p>
-          <a href="{{ shortenedUrl }}">{{ shortenedUrl }}</a>
         </p>
       </div>
 
       <div class="mt-5">
         <h3>Recent URLs:</h3>
-        <ul class="list-group">
-          <% for (let i = 0; i < recentUrls.length; i++) { %>
-          <li class="list-group-item">
-            <a href="<%= recentUrls[i].shortUrl %>"
-              ><%= recentUrls[i].shortUrl %></a
-            >
-            <span class="text-muted">
-              (Original URL: <%= recentUrls[i].originalUrl %>)</span
-            >
-          </li>
-          <% } %>
-        </ul>
+        
       </div>
     </div>
 
