@@ -8,24 +8,28 @@ const DB = process.env.DATABASE_LOCAL || "mongodb://localhost/url-shortener";
 mongoose.connect(DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  
 });
 
+mongoose.connection.on("error", (error) => {
+    console.error("MongoDB connection error:", error);
+  });
+  
 const app = express();
 const port = process.env.PORT;
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/", async (req, res) => {
+  const shortUrls = await shortUrl.find();
+  res.render("index", { shortUrls });
 });
 
 app.listen(port || 5000, () => {
   console.log("server running successfully");
 });
 
-app.post("/shorten", async(req, res) => {
+app.post("/shorten", async (req, res) => {
   await shortUrl.create({ full: req.body.url });
   res.redirect("/");
 });
