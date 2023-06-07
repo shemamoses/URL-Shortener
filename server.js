@@ -11,9 +11,9 @@ mongoose.connect(DB, {
 });
 
 mongoose.connection.on("error", (error) => {
-    console.error("MongoDB connection error:", error);
-  });
-  
+  console.error("MongoDB connection error:", error);
+});
+
 const app = express();
 const port = process.env.PORT;
 
